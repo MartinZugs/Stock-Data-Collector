@@ -6,12 +6,16 @@ This method takes any of the input provided in the command line and sanatizes, p
 '''
 def parse_data():
     # Setting variables from command line arguements 
-    ticker_symbol = sys.argv[1]
+    ticker_symbols = sys.argv[1]
     api_key = sys.argv[2]
 
-    return ticker_symbol, api_key
+    return ticker_symbols, api_key
 
-ticker_symbol, api_key = parse_data()
+ticker_symbols, api_key = parse_data()
 
-dh = DataHandler(ticker_symbol, api_key)
+dh = DataHandler(ticker_symbols, api_key)
+
+raw_data = dh.get_current_data()
+
+clean_data = dh.send_data(raw_data)
 
